@@ -1,0 +1,15 @@
+version: "2"
+
+services:
+  redisdb:
+    container_name: "redisdb"
+    image: "redis:latest"
+    ports:
+      - "63799:6379"
+    tty: true
+  rouletteapi:
+    depends_on:
+      - "redisdb"
+    build: .
+    ports:
+      - "5000:5000"
